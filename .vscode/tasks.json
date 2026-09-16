@@ -26,6 +26,14 @@
       "problemMatcher": []
     },
     {
+      "label": "Research: inspect pretrained pilot plan",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": ["scripts/run_pretrained_pilot.py", "--budget-seconds", "120"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
       "label": "Research: check publication files",
       "type": "process",
       "command": "${workspaceFolder}/.venv/bin/python",

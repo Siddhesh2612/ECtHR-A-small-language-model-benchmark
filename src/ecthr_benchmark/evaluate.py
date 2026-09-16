@@ -36,10 +36,12 @@ def publish_evaluation(run_dir, result, prediction_rows):
 
 
 def evaluate(run_dir):
-    import torch
-    from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments, default_data_collator
     run_dir = Path(run_dir).resolve()
     config = json.loads((run_dir / 'resolved_config.json').read_text())
+    if config.get('pilot'):
+        raise ValueError('Final test evaluation is disabled for pilot runs; create a separate full experiment.')
+    import torch
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments, default_data_collator
     status = json.loads((run_dir / 'status.json').read_text())
     if status['status'] != 'completed':
         raise ValueError('Training must have completed before final evaluation.')

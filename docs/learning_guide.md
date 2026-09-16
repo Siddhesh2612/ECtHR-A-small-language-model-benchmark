@@ -93,6 +93,32 @@ It verifies the plumbing. Its scores say nothing about ECtHR-A accuracy, pretrai
 model quality, or the dissertation findings. A full pretrained run is the next
 research step and requires an appropriate compute environment.
 
+## 9. Why start with a bounded pretrained pilot?
+
+The smoke run tests code using a randomly initialized synthetic model. A
+pretrained pilot crosses the next boundary: it downloads a real checkpoint,
+tokenizes real prepared cases and performs a few optimization steps. Keeping the
+subset and step count small makes failures cheap to diagnose before a full run.
+
+The pilot subset is deterministic: the same seed and parent files select the same
+source row indices. Deterministic selection makes runs traceable, although it does
+not guarantee identical floating-point results on different hardware.
+
+**Try it:** run the pilot command without `--execute`. Identify the data, model,
+step and wall-time limits in the printed plan. No model or court data is touched.
+
+## 10. Revision pins and compute budgets
+
+A model name such as `main` can point to different files later. A full commit hash
+is an immutable revision: it identifies one exact state of the model repository.
+The pilot additionally requires a wall-time budget. Row, context and step limits
+bound the planned workload; the timer bounds the process when downloads or
+training take unexpectedly long.
+
+The runner is the supported pilot entry point because it enforces that timer.
+Calling the lower-level training module still checks the configuration ceilings,
+but it does not own the outer process lifetime.
+
 ## Reading
 
 - [LexGLUE experiment code](https://github.com/coastalcph/lex-glue/blob/main/experiments/ecthr.py)

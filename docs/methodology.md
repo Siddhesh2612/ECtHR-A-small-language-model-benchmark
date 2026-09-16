@@ -26,6 +26,21 @@ scheduler. Train only on training cases. Choose checkpoints using validation
 micro-F1. Preserve the resolved configuration, actual input hashes and runtime
 metadata with each uniquely identified run.
 
+## Pretrained pilot protocol
+
+Before a full experiment, use a deterministic subset of the existing training
+and validation splits. Sampling operates on source row indices without balancing,
+relabeling or deduplication; selected rows keep their original order. The pilot
+manifest records the parent manifest hash, original input hashes, selected
+indices, label counts and duplicate counts. Test examples are not read or copied.
+
+The supported first pilot fixes the model family and requires an immutable
+40-character model revision. Hard ceilings limit rows, optimizer steps, context
+length, batch sizes and wall time. These controls make a configuration error fail
+before it can silently start a full run. The pilot is used to inspect execution,
+loss, truncation and artifacts. It does not produce a held-out test result and is
+not directly comparable with a full ECtHR-A benchmark experiment.
+
 ## Evaluation protocol
 
 Predict a violation for logits strictly greater than zero, equivalent to sigmoid

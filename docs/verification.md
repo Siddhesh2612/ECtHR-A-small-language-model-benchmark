@@ -1,6 +1,6 @@
 # Verification status
 
-Last verified: 16 September 2026 on macOS arm64 with Python 3.12.14.
+Initial Phase 1–3 verification: 16 September 2026 on macOS arm64 with Python 3.12.14. The checks below describe that recorded verification, not an automatic assertion that every subsequent commit has been tested.
 
 ## Phase 1: historical archive
 
@@ -55,6 +55,23 @@ The test metric values have no research meaning. The smoke run verifies pipeline
 
 Evaluation output publication is interruption-safe: predictions are staged first and test metrics are written last as the completion marker. A simulated interrupted write test verifies that the run can be retried.
 
+## Phase 4: bounded pretrained pilot infrastructure
+
+Verified without downloading pretrained weights or starting a pretrained run:
+
+- the pilot configuration pins `EleutherAI/gpt-neo-125m` to immutable revision `21def0189f5705e2521767faed922f1f15e7d7db`;
+- the default plan is limited to 16 training rows, eight validation rows, 128 tokens and two optimizer steps on CPU float32;
+- configuration validation rejects unsupported models and workload values above the pilot ceilings;
+- the runner requires a 30–1,800 second wall-time budget and records completion, failure, interruption or budget termination;
+- deterministic subset generation records source hashes and row indices without balancing, relabeling or deduplication;
+- source and selected duplicate counts are recorded, and full train/validation overlap is rechecked;
+- test examples are neither read nor copied into pilot data; final test evaluation rejects pilot runs;
+- the plan-only command completes without data preparation, network access or training.
+
+The pretrained checkpoint has not yet been downloaded or fine-tuned. These checks
+verify orchestration and safety boundaries, not model compatibility, predictive
+performance, runtime or memory usage.
+
 ## Automated checks
 
 Command:
@@ -63,7 +80,7 @@ Command:
 python -m unittest discover -s tests -v
 ```
 
-Result: **16 tests passed**. Coverage includes data structure and split checks, official labels, multi-hot encoding, derived no-violation metrics, invalid metric inputs and recoverable evaluation writes.
+Current verification result: **29 tests passed**. Coverage includes data structure and split checks, official labels, multi-hot encoding, derived no-violation metrics, invalid metric inputs, recoverable evaluation writes, pilot workload ceilings and deterministic subset provenance.
 
 Command:
 
@@ -85,12 +102,24 @@ Result: passed for the complete current Git candidate set, including 21 notebook
 
 ## Not yet verified
 
-- No pretrained model has been downloaded or fine-tuned with the new pipeline.
+- No pretrained model has been downloaded or fine-tuned with the new pipeline; the bounded pilot remains execution-unverified.
 - `configs/gpt_neo_125m.json` is a proposed new experiment, not a recovered historical configuration.
 - The optional LoRA path has code-level validation but no completed training run.
 - CUDA behavior, GPU memory measurement and multi-GPU execution are untested.
 - Quantization is outside Phase 3 and is not implemented.
 - No controlled comparison with Legal-BERT or other models has been run.
-- No remote GitHub repository, release or push has been created.
 
-Before a full run, define the model revision, hardware, precision, training budget and estimated cost. Run a small pretrained subset experiment first, then pin the resolved model revision for the full experiment.
+Before a full run, execute and inspect the bounded pilot, record observed hardware/runtime/memory evidence, and define a separate full-experiment compute budget. Do not promote pilot validation metrics into the final benchmark table.
+
+## Publication status
+
+The repository is now public at
+[Siddhesh2612/ECtHR-A-small-language-model-benchmark](https://github.com/Siddhesh2612/ECtHR-A-small-language-model-benchmark).
+This supersedes the initial pre-publication status. Publishing the implementation
+and archive does not establish pretrained-model reproducibility. GitHub Actions
+runs unit tests and publication checks; inspect the workflow result for the
+specific commit rather than assuming a passing status from this document.
+
+The repository includes a license, software citation metadata and contribution
+guidance. The dataset and model weights are not distributed under that license;
+see [third-party notices](../THIRD_PARTY_NOTICES.md).

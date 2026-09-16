@@ -99,7 +99,34 @@ python -m ecthr_benchmark.evaluate --run-dir runs/smoke/PRINTED_RUN_ID
 Use the run directory printed by training. Evaluation refuses to overwrite
 existing test metrics. To repeat the workflow, create a new run.
 
-## Next pretrained experiment
+## Phase 4: bounded pretrained pilot
+
+The first real-model pilot uses `EleutherAI/gpt-neo-125m` at the immutable model
+revision recorded in `configs/pilot_gpt_neo_125m.json`. It deterministically
+selects 16 training and eight validation rows, trains for at most two optimizer
+steps with 128-token inputs, and defaults to CPU float32. It is a pipeline pilot,
+not a benchmark result or a recovery of the missing historical configuration.
+
+Inspect the complete plan without preparing data, downloading weights or training:
+
+```sh
+python scripts/run_pretrained_pilot.py --budget-seconds 120
+```
+
+After reviewing the printed plan, execute it with a hard whole-process budget:
+
+```sh
+python scripts/run_pretrained_pilot.py --budget-seconds 1800 --execute
+```
+
+The execution command requires the verified `data/processed` files from Phase 2.
+It creates a private deterministic train/validation subset inside the ignored run
+directory and records the selected source indices, hashes, configuration, log and
+completion status. The runner terminates the training process when the supplied
+30–1,800 second budget expires. Pilot test evaluation is deliberately disabled;
+promoting a configuration to a full experiment is a separate research decision.
+
+## Future full pretrained experiment
 
 `configs/gpt_neo_125m.json` is a new full-fine-tuning configuration. The original
 GPT-Neo 125M training notebook was not recovered, so this configuration is not
@@ -150,10 +177,25 @@ The [LexGLUE paper](https://aclanthology.org/2022.acl-long.297/) and
 [benchmark implementation](https://github.com/coastalcph/lex-glue) are the primary
 references for the dataset and evaluation convention.
 
-## Before the first GitHub push
+## Repository, citation and license
 
-Run `python scripts/check_publication.py` and review the exact files shown by
-`git status`. Decide the repository owner/name/visibility and code license.
-Token removal does not revoke old credentials; rotate any still-active tokens
-from the original archive. No remote repository, commit or push is created by
-the setup scripts.
+The project is published at
+[Siddhesh2612/ECtHR-A-small-language-model-benchmark](https://github.com/Siddhesh2612/ECtHR-A-small-language-model-benchmark).
+This repository contains the MSc research archive and the new preparation/training
+implementation; publication does not make historical scores reproduced results.
+No new pretrained ECtHR-A benchmark result is claimed by the synthetic smoke run.
+
+Research software metadata is provided in [CITATION.cff](CITATION.cff). Please cite
+this repository when using its code and cite LexGLUE separately when using the
+benchmark. For reproducibility, record the commit used in your experiment.
+
+Original contributions to this repository are licensed under
+[Apache-2.0](LICENSE), subject to the scope in
+[third-party notices](THIRD_PARTY_NOTICES.md). The license does not relicense the
+ECtHR-A dataset, pretrained model weights, software dependencies or third-party
+figures; obtain those materials under their respective terms.
+
+See [contributing](CONTRIBUTING.md) for the development workflow. Before each
+commit or push, run `python scripts/check_publication.py` and inspect `git diff`
+and `git status`. Token removal does not revoke old credentials; rotate any
+still-active tokens from the original archive.

@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this research software, please cite this repository and record the commit used. Cite LexGLUE separately for the benchmark."
+type: software
+title: "Small Language Model Benchmarking on ECtHR-A"
+authors:
+  - family-names: Jadhav
+    given-names: Siddhesh
+repository-code: "https://github.com/Siddhesh2612/ECtHR-A-small-language-model-benchmark"
+url: "https://github.com/Siddhesh2612/ECtHR-A-small-language-model-benchmark"
+license: Apache-2.0
+abstract: >-
+  MSc dissertation archive and research software for multi-label classification
+  of European Court of Human Rights case facts using the ECtHR-A benchmark.
+  Includes data preparation, configurable model fine-tuning, separate final
+  evaluation and preserved historical notebook experiments. Historical reported
+  scores are not claimed as reproduced by the new implementation; synthetic
+  smoke-test results verify the workflow and are not benchmark findings.
+keywords:
+  - natural language processing
+  - legal NLP
+  - ECtHR-A
+  - LexGLUE
+  - multi-label classification
+  - language model fine-tuning
+  - reproducible research

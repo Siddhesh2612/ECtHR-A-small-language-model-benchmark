@@ -11,6 +11,7 @@ import uuid
 
 from .labels import LABEL_NAMES as ARTICLE_NAMES, multi_hot
 from .metrics import trainer_metrics
+from .pilot import immutable_revision, validate_pilot
 
 
 def write_json(path, value):
@@ -88,6 +89,8 @@ def train(config_path):
     mode = config.get('mode', 'pretrained')
     if mode not in ('smoke', 'pretrained'):
         raise ValueError('mode must be smoke or pretrained')
+    if config.get('pilot'):
+        validate_pilot(config)
     max_length = int(config.get('max_length', 512))
     if max_length < 2:
         raise ValueError('max_length must be at least 2')
@@ -117,8 +120,18 @@ def train(config_path):
             expected_mapping = {str(i): name for i, name in enumerate(ARTICLE_NAMES)}
             if manifest.get('label_mapping') != expected_mapping:
                 raise ValueError('Prepared label mapping does not match ECtHR-A.')
+            if config.get('pilot'):
+                if manifest.get('pilot') is not True or manifest.get('mode') != 'pretrained_pilot_subset':
+                    raise ValueError('Pilot runs require a pretrained_pilot_subset manifest.')
+                if len(checked_train) != config['train_rows'] or len(checked_validation) != config['validation_rows']:
+                    raise ValueError('Pilot prepared row counts differ from configured bounded subset.')
             model_id = config['model_name']
             revision = config.get('model_revision', 'main')
+            if config.get('pilot') and not immutable_revision(revision):
+                from huggingface_hub import HfApi
+                revision = HfApi().model_info(model_id, revision=revision).sha
+                if not immutable_revision(revision):
+                    raise ValueError('Could not resolve an immutable model revision.')
             tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision, trust_remote_code=False)
             model = AutoModelForSequenceClassification.from_pretrained(
                 model_id, revision=revision, num_labels=10,
@@ -157,7 +170,7 @@ def train(config_path):
         resolved = {**config, 'mode': mode, 'seed': seed, 'max_length': max_length, 'run_id': run_id,
                     'run_dir': str(run_dir), 'data_dir': str(data_dir),
                     'config_source': str(config_path), 'config_sha256': file_hash(config_path),
-                    'resolved_model_revision': getattr(model.config, '_commit_hash', None),
+                    'resolved_model_revision': getattr(model.config, '_commit_hash', None) or (revision if mode != 'smoke' else None),
                     'label_names': ARTICLE_NAMES, 'threshold': 'logit > 0',
                     'evaluation_policy': '10 article outputs + derived no-violation; test is separate',
                     'input_sha256': {split: file_hash(data_dir / f'{split}.jsonl')
@@ -203,13 +216,16 @@ def train(config_path):
             'peak_cuda_memory_allocated_bytes': torch.cuda.max_memory_allocated() if args.device.type == 'cuda' else None,
             'versions': {p: importlib.metadata.version(p) for p in ('torch', 'transformers', 'tokenizers', 'accelerate')},
             'best_checkpoint': trainer.state.best_model_checkpoint,
-            'synthetic': mode == 'smoke', 'test_evaluated': False})
+            'synthetic': mode == 'smoke', 'pilot': bool(config.get('pilot')), 'test_evaluated': False})
         write_json(run_dir / 'status.json', {'status': 'completed', 'mode': mode})
     except Exception as exc:
         write_json(run_dir / 'status.json', {'status': 'failed', 'error_type': type(exc).__name__})
         raise
     print(f'Run saved: {run_dir}')
-    print(f'Evaluate separately: python -m ecthr_benchmark.evaluate --run-dir "{run_dir}"')
+    if config.get('pilot'):
+        print('Pilot complete. Final test evaluation is disabled; plan a separate full experiment next.')
+    else:
+        print(f'Evaluate separately: python -m ecthr_benchmark.evaluate --run-dir "{run_dir}"')
     return run_dir
 
 
