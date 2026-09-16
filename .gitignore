@@ -1,0 +1,24 @@
+# Local extraction includes original notebook outputs and publication-review material.
+project-audit/
+__pycache__/
+.DS_Store
+.env
+.env.*
+!.env.example
+.venv/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+data/raw/
+data/processed/
+data/smoke/
+runs/
+.cache/
+*.safetensors
+*.bin
+*.pt
+*.pth
+# Private audit notes retained locally; publication docs live under docs/.
+PROJECT_REVIEW.md
+GITHUB_REPOSITORY_PLAN.md

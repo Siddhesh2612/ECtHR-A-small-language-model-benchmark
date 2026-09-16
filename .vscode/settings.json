@@ -1,0 +1,9 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.testing.unittestEnabled": true,
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestArgs": ["-v", "-s", "tests", "-p", "test_*.py"],
+  "python.analysis.extraPaths": ["${workspaceFolder}/src"],
+  "files.exclude": {"**/__pycache__": true},
+  "search.exclude": {"project-audit/**": true, "data/raw/**": true, "data/processed/**": true, "runs/**": true, ".venv/**": true}
+}

@@ -1,0 +1,18 @@
+{
+  "mode": "pretrained",
+  "description": "New full-fine-tuning configuration; the original dissertation GPT-Neo 125M training configuration was not recovered. Not a historical reproduction.",
+  "model_name": "EleutherAI/gpt-neo-125m",
+  "model_revision": "main",
+  "data_dir": "data/processed",
+  "output_root": "runs/gpt_neo_125m",
+  "seed": 42,
+  "max_length": 512,
+  "epochs": 3,
+  "batch_size": 2,
+  "eval_batch_size": 2,
+  "gradient_accumulation_steps": 8,
+  "learning_rate": 0.00003,
+  "weight_decay": 0.01,
+  "bf16": false,
+  "fp16": false
+}

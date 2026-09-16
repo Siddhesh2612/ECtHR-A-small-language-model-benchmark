@@ -1,0 +1,22 @@
+model,tokens,learning_rate,training_cycles,micro_f1,macro_f1,weighted_f1,source,source_range,status
+GPT-2 (reported),512,2e-05,3,0.622592,0.511,0.599197,model results.xlsx,Sheet1!C7:L7,historical reported; not independently reproduced
+GPT-2 (reported),512,3e-05,3,0.631667,0.556668,0.617698,model results.xlsx,Sheet1!C8:L8,historical reported; not independently reproduced
+GPT-2 (reported),1024,3e-05,5,0.665,0.579,0.649,model results.xlsx,Sheet1!C9:L9,historical reported; not independently reproduced
+GPT-2 (reported),1024,3e-05,3,0.67,0.579,0.653,model results.xlsx,Sheet1!C10:L10,historical reported; not independently reproduced
+GPT-Neo 1.3B,1024,3e-05,1000 steps,0.52,0.291,0.451,model results.xlsx,Sheet1!C14:L14,historical reported; not independently reproduced
+GPT-Neo 1.3B,1024,3e-05,5200 stsp (1.1 epoch),0.6525,0.5269,0.6295,model results.xlsx,Sheet1!C15:L15,historical reported; not independently reproduced
+GPT-Neo 1.3B,2048,3e-05,3,,,,model results.xlsx,Sheet1!C16:L16,historical reported; not independently reproduced
+DialogRPT-updown,1024,3e-05,5,0.622592,0.511,0.599197,model results.xlsx,Sheet1!C21:L21,historical reported; not independently reproduced
+DialogRPT-updown,1024,3e-05,3,0.6579,0.5252,0.6282,model results.xlsx,Sheet1!C22:L22,historical reported; not independently reproduced
+Phi-2,512,1e-05,3,0.628,0.477,0.592,model results.xlsx,Sheet1!C28:L28,historical reported; not independently reproduced
+Phi-2,*512,1e-06,3,0.261,0.09,0.185,model results.xlsx,Sheet1!C29:L29,historical reported; not independently reproduced
+Phi-2,1024,1e-05,3,0.635,0.501,0.612,model results.xlsx,Sheet1!C30:L30,historical reported; not independently reproduced
+T5,512,1e-05,5,0.211,0.047,0.1269,model results.xlsx,Sheet1!C36:L36,historical reported; not independently reproduced
+T5,512,1e-06,3,0.191,0.141,0.19,model results.xlsx,Sheet1!C37:L37,historical reported; not independently reproduced
+RoBERTa (reported),512,1e-05,6,0.61,0.524,0.575,model results.xlsx,Sheet1!C43:L43,historical reported; not independently reproduced
+RoBERTa (reported),512,3e-05,6,0.64,0.6,0.637,model results.xlsx,Sheet1!C44:L44,historical reported; not independently reproduced
+Phi-1,1024,1e-06,100 steps,0.183788,0.157334,0.23194,model results.xlsx,Sheet1!C49:L49,historical reported; not independently reproduced
+Phi-1,1024,1e-06,3,,,,model results.xlsx,Sheet1!C50:L50,historical reported; not independently reproduced
+GPT-Neo 125M (reported),1024,3e-05,3,0.65,0.5363,0.6273,model results.xlsx,Sheet1!C55:L55,historical reported; not independently reproduced
+GPT-Neo 125M (reported),2048,3e-05,3,0.6749,0.5478,0.6602,model results.xlsx,Sheet1!C56:L56,historical reported; not independently reproduced
+GPT-Neo 1.3B,2048,3e-05,3500 steps,0.578,0.611,0.489,Siddhesh Jadhav - Develop an AI Judge.pdf,Table 6.2; printed page 44; PDF page 52,report-only; spreadsheet corresponding metrics blank; requires reconciliation

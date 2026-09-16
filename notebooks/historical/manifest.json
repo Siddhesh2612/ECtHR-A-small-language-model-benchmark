@@ -1,0 +1,392 @@
+[
+  {
+    "notebook": "notebooks/historical/gpt_neo/gpt_neo_token_1024_epochs_3_lr_3e5_4d42dc56.ipynb",
+    "source_relative_path": "GPT-Neo/GPT-Neo_token_1024_epochs_3_lr_3e5.ipynb",
+    "source_file_sha256": "8ec0e431863d725342a9c502f8f36c0dac3d78bdd0050cdc5eec2b687f92b058",
+    "source_code_sha256": "4d42dc567c42c2470b4d07342a09ec03be368b737852a57bcbfa26f30ed39fbb",
+    "publication_sha256": "566b8a08b63a4697aa0e166f8445146ab8e12f6e37e3bce455b669f6a5e9932e",
+    "source_code_lines": 245,
+    "checkpoint_or_purpose": "EleutherAI/gpt-neo-1.3B",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Principal training code evaluates on validation; a final held-out test run is not established. A report metric/configuration transcription discrepancy remains unresolved."
+  },
+  {
+    "notebook": "notebooks/historical/gpt_neo/gpt_neo_token_1024_steps_1000_lr_3e5_4c8acff4.ipynb",
+    "source_relative_path": "GPT-Neo/GPT-Neo_token_1024_steps_1000_lr_3e5.ipynb",
+    "source_file_sha256": "a125af05e9c13a474d15f407518e7e859ab65319618ad116bdf529bdfbf862db",
+    "source_code_sha256": "4c8acff46f3d82aa2663eb25ca0d49d2492cd221c2d79db10edffb3c98cc441b",
+    "publication_sha256": "dca1a7cbf32a8a2f0e9d633094ad3dd68d666396aa4d4666c5162f6e16dfe88a",
+    "source_code_lines": 243,
+    "checkpoint_or_purpose": "EleutherAI/gpt-neo-1.3B",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Principal training code evaluates on validation; a final held-out test run is not established. A report metric/configuration transcription discrepancy remains unresolved."
+  },
+  {
+    "notebook": "notebooks/historical/analysis/gptneo_results_0c65e682.ipynb",
+    "source_relative_path": "GPT-Neo/GPTNeo_results.ipynb",
+    "source_file_sha256": "48558fa8bea4f305ae4ee00bfd594305b656bcf5ef7a778554257f5603b230df",
+    "source_code_sha256": "0c65e682a38a73baf652b2433c4fc850889a84c1f03558ca91870ba5db0dcdaf",
+    "publication_sha256": "f9c2c93f2e3f539a8eec1e31170dd01a36348230ebfad5f539eac7b5d06d37f7",
+    "source_code_lines": 189,
+    "checkpoint_or_purpose": "Analysis / preprocessing",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Historical plotting code contains unavailable baseline weighted-F1 values represented as zero and mixed score scales. Do not reuse these figures as corrected comparisons."
+  },
+  {
+    "notebook": "notebooks/historical/dialogrpt/gpt2_c4df95a0.ipynb",
+    "source_relative_path": "GPT2/GPT2.ipynb",
+    "source_file_sha256": "b9fe7cc9346907a33bac376b0e51af15d32314d242ad4762d6cff38ae5af105a",
+    "source_code_sha256": "c4df95a0f1a32262f1137929c28f52afc5e8d9e3793853476604b76d3c0ddacf",
+    "publication_sha256": "2cc8a47e541213e27248a8fe6d5a644119364eb64dff81929e43a4f4af9f156d",
+    "source_code_lines": 227,
+    "checkpoint_or_purpose": "microsoft/DialogRPT-updown (loaded by GPT2.ipynb)",
+    "duplicate_code_sources": [
+      "dissertation_code/GPT2/GPT2.ipynb",
+      "dissertation_code.zip!/dissertation_code/GPT2/GPT2.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. The source named GPT2.ipynb loads DialogRPT, so it does not substantiate a GPT-2 Medium run. Principal training code evaluates on validation; a final held-out test run is not established."
+  },
+  {
+    "notebook": "notebooks/historical/dialogrpt/gpt_2_rpt_down_token_1024_epochs_3_lr_3e5_1_99486eaa.ipynb",
+    "source_relative_path": "GPT2_microsoft:DialogRPT-updown/GPT-2_Rpt_down_token_1024_epochs_3_lr_3e5 (1).ipynb",
+    "source_file_sha256": "0347c63b80a314ac4ca2e4517f8324e80245d9a1044b9747664cd2362498b463",
+    "source_code_sha256": "99486eaa0c0c1b2cae2d3486aeba6749d4faacfa6747f67ed4c74a71af531b92",
+    "publication_sha256": "b7c3e6df9c8e31bb550ad85d4c516320863595fa78a001355b4bf57ea6852cef",
+    "source_code_lines": 250,
+    "checkpoint_or_purpose": "microsoft/DialogRPT-updown",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. The source named GPT2.ipynb loads DialogRPT, so it does not substantiate a GPT-2 Medium run. Principal training code evaluates on validation; a final held-out test run is not established."
+  },
+  {
+    "notebook": "notebooks/historical/phi2/phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1_0_1_2b3f9f01.ipynb",
+    "source_relative_path": "Phi2/Phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1.0 (1).ipynb",
+    "source_file_sha256": "c6a6e3e77df6182fc38dd96c3e1b9426cbe6650bb35598619a06a32a83272f72",
+    "source_code_sha256": "2b3f9f01f33f4776631b4c38b4f842065460d94eebabfc76a658f42abfe1c470",
+    "publication_sha256": "f97fd8a7efc623dea6187027ed1d609a328e327141780343a96f4bc236611de0",
+    "source_code_lines": 262,
+    "checkpoint_or_purpose": "microsoft/phi-2",
+    "duplicate_code_sources": [
+      "dissertation_code/phi2/Phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1.0 (1).ipynb",
+      "dissertation_code.zip!/dissertation_code/phi2/Phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1.0 (1).ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Test data is used during checkpoint selection in the recovered training notebooks. These results are not independent held-out test estimates."
+  },
+  {
+    "notebook": "notebooks/historical/phi2/phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1_0_ca540d4c.ipynb",
+    "source_relative_path": "Phi2/Phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1.0.ipynb",
+    "source_file_sha256": "7ac0aca7a7b7e5d3088ae6616f7fa3ed14ed0787630245854d230b143a6b6d0c",
+    "source_code_sha256": "ca540d4c056c33086b6b7aff8795dc01177ed1273ba367375e579003b42a6796",
+    "publication_sha256": "6186f4040b300d277401ade6fd2cb8f8a4bac3b12cfafe222efd033f5fb61964",
+    "source_code_lines": 280,
+    "checkpoint_or_purpose": "microsoft/phi-2",
+    "duplicate_code_sources": [
+      "dissertation_code/phi2/Phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1.0.ipynb",
+      "dissertation_code.zip!/dissertation_code/phi2/Phi2_lr_1e5_epochs_3_token_1024_maxgrad_norm_1.0.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Test data is used during checkpoint selection in the recovered training notebooks. These results are not independent held-out test estimates."
+  },
+  {
+    "notebook": "notebooks/historical/phi2/phi2_lr_1e5_epochs_3_token_512_maxgrad_norm_1_0_097eeb4f.ipynb",
+    "source_relative_path": "Phi2/Phi2_lr_1e5_epochs_3_token_512_maxgrad_norm_1.0.ipynb",
+    "source_file_sha256": "5d34f1d4487690bbc2e72125e576fb3ee022281eb02c84f7272d1e183f11c234",
+    "source_code_sha256": "097eeb4fe6ed771705b66d79251980755afd6f528dff8cada4f83776fbf4e830",
+    "publication_sha256": "c52a1bd38e9e2c9eddec8017dae2758ef445c8c78216bcc73efedf49e7b908eb",
+    "source_code_lines": 280,
+    "checkpoint_or_purpose": "microsoft/phi-2",
+    "duplicate_code_sources": [
+      "dissertation_code/phi2/Phi2_lr_1e5_epochs_3_token_512_maxgrad_norm_1.0.ipynb",
+      "dissertation_code.zip!/dissertation_code/phi2/Phi2_lr_1e5_epochs_3_token_512_maxgrad_norm_1.0.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Test data is used during checkpoint selection in the recovered training notebooks. These results are not independent held-out test estimates."
+  },
+  {
+    "notebook": "notebooks/historical/phi2/phi_2forclassification_1_e5baa06c.ipynb",
+    "source_relative_path": "Phi2/phi-2forclassification (1).ipynb",
+    "source_file_sha256": "63de19c94b41efc31fd5219952bac362d1cfc5adbd946136e0000bb68978e593",
+    "source_code_sha256": "e5baa06c79d3fb12e5afbcacb5a679540a751483ddff909f217ffe91f7180ac7",
+    "publication_sha256": "33874d87f8233cf938e709f01f4a25e851b9b17f589f139d5d28ff43b279a4ad",
+    "source_code_lines": 281,
+    "checkpoint_or_purpose": "microsoft/phi-2",
+    "duplicate_code_sources": [
+      "dissertation_code/phi2/phi-2forclassification (1).ipynb",
+      "dissertation_code.zip!/dissertation_code/phi2/phi-2forclassification (1).ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Test data is used during checkpoint selection in the recovered training notebooks. These results are not independent held-out test estimates."
+  },
+  {
+    "notebook": "notebooks/historical/t5/t5_lr_1e5_epochs_5_token_512_d15de0e5.ipynb",
+    "source_relative_path": "T5/T5_lr_1e5_epochs_5_token_512.ipynb",
+    "source_file_sha256": "941a5cf44dd4278dbb58d467184f7b2291bb8affa0252ad9a6c654aeae2e806a",
+    "source_code_sha256": "d15de0e54ee9b6c7885056e819b34a5aa0ff835397fec822a47466840f5e0f4c",
+    "publication_sha256": "b6bd680a81d971e4ba5f357d695f7a783f23889b00b2efb1a43d0278d61d93ef",
+    "source_code_lines": 283,
+    "checkpoint_or_purpose": "google-t5/t5-base",
+    "duplicate_code_sources": [
+      "dissertation_code/FLANT5/T5_lr_1e5_epochs_5_token_512.ipynb",
+      "dissertation_code.zip!/dissertation_code/FLANT5/T5_lr_1e5_epochs_5_token_512.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Checkpoint IDs identify google-t5/t5-base, not FLAN-T5. Test data is used during checkpoint selection; filenames may differ from epoch settings."
+  },
+  {
+    "notebook": "notebooks/historical/t5/t5_lr_1e6_epochs_5_token_512_51019520.ipynb",
+    "source_relative_path": "T5/T5_lr_1e6_epochs_5_token_512.ipynb",
+    "source_file_sha256": "9990fdb5360706da3095646a95e53b856f728d4c2e27806c9997940d74a54779",
+    "source_code_sha256": "51019520bbb6dc5feb292dd260fac91f59bd120f529f8f1bf63bc55f48414966",
+    "publication_sha256": "97e597edeb0a9c9c925aa209bdb27481045ed5118c575bfb828378a3e76fe4f2",
+    "source_code_lines": 302,
+    "checkpoint_or_purpose": "google-t5/t5-base",
+    "duplicate_code_sources": [
+      "dissertation_code/FLANT5/T5_lr_1e6_epochs_5_token_512.ipynb",
+      "dissertation_code.zip!/dissertation_code/FLANT5/T5_lr_1e6_epochs_5_token_512.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Checkpoint IDs identify google-t5/t5-base, not FLAN-T5. Test data is used during checkpoint selection; filenames may differ from epoch settings."
+  },
+  {
+    "notebook": "notebooks/historical/gemma/gemma2withoutquant_1_d65fdc7a.ipynb",
+    "source_relative_path": "dissertation_code/Gemma_2_2b/Gemma2withoutQuant (1).ipynb",
+    "source_file_sha256": "fc583ec6ef0f8baa1d4ad52b8f844d488dd7156bf935657e8d5e5df7c0ab1bb1",
+    "source_code_sha256": "d65fdc7a939d33928ca39c2b2b645f7a3a33781c95eb5c714886596ca2f29961",
+    "publication_sha256": "3f82f04c521cc4f934160481acd9afcd5456c8ade8ba479766fac44d0d806f84",
+    "source_code_lines": 285,
+    "checkpoint_or_purpose": "google/gemma-2-2b",
+    "duplicate_code_sources": [
+      "dissertation_code.zip!/dissertation_code/Gemma_2_2b/Gemma2withoutQuant (1).ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory classification and prompting variants. The report describes NaN failures; no verified comparable performance claim is made."
+  },
+  {
+    "notebook": "notebooks/historical/gemma/gemma2withoutquant_b5f04aca.ipynb",
+    "source_relative_path": "dissertation_code/Gemma_2_2b/Gemma2withoutQuant.ipynb",
+    "source_file_sha256": "d1ac2e2671d18042c9a0b79b03a3b084882ce9e34a1a0624069d904fbe9a91c2",
+    "source_code_sha256": "b5f04aca74a3b1526f3fa14ee7550de7273a35ac97c8d7ef66023ad8f0b2a1ad",
+    "publication_sha256": "b7faac10c6e7a5d89659003d4bd08408ed2c796863e4ef23a963f239f6f9b44f",
+    "source_code_lines": 241,
+    "checkpoint_or_purpose": "google/gemma-2-2b",
+    "duplicate_code_sources": [
+      "dissertation_code.zip!/dissertation_code/Gemma_2_2b/Gemma2withoutQuant.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory classification and prompting variants. The report describes NaN failures; no verified comparable performance claim is made."
+  },
+  {
+    "notebook": "notebooks/historical/gemma/newfewshotsgemma2_1_9973a3b7.ipynb",
+    "source_relative_path": "dissertation_code/Gemma_2_2b/NewFewShotsGemma2 (1).ipynb",
+    "source_file_sha256": "d9aab4a9510aaaf2b7c487f296fc5d1e382890c43a54fc963511a899e542ece5",
+    "source_code_sha256": "9973a3b7a6d6ba78f145f5fa474557ba26c161aebc384cd18b4e799ee8349f9f",
+    "publication_sha256": "8e3f025de7186b802113d6a1d3cfad70f0a3e688558efa56d53a61a3d2b35dfe",
+    "source_code_lines": 409,
+    "checkpoint_or_purpose": "google/gemma-2-2b",
+    "duplicate_code_sources": [
+      "dissertation_code.zip!/dissertation_code/Gemma_2_2b/NewFewShotsGemma2 (1).ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory classification and prompting variants. The report describes NaN failures; no verified comparable performance claim is made."
+  },
+  {
+    "notebook": "notebooks/historical/gemma/newfewshotsgemma2_dc3da5ba.ipynb",
+    "source_relative_path": "dissertation_code/Gemma_2_2b/NewFewShotsGemma2.ipynb",
+    "source_file_sha256": "2380ec3278efa64282c64f4162c0301571c1ec93316181aa955ba3315dc35d84",
+    "source_code_sha256": "dc3da5bae541e7d6ed745f9cd494d06161d0cf3e4d585b4c827ee69a6eb5d65a",
+    "publication_sha256": "0b36e6ee969d0d71b8be196357c7122367bcea56b171ac9a55f12d3112109048",
+    "source_code_lines": 197,
+    "checkpoint_or_purpose": "google/gemma-2b-it",
+    "duplicate_code_sources": [
+      "dissertation_code.zip!/dissertation_code/Gemma_2_2b/NewFewShotsGemma2.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory classification and prompting variants. The report describes NaN failures; no verified comparable performance claim is made."
+  },
+  {
+    "notebook": "notebooks/historical/gemma/gemma2_2b_fewshot_2ca59c44.ipynb",
+    "source_relative_path": "dissertation_code/Gemma_2_2b/gemma2-2b-fewshot.ipynb",
+    "source_file_sha256": "a382c6483505c1c2fd20d150c51f96ba54d3fda495b8be43cbdf52be6dc62de6",
+    "source_code_sha256": "2ca59c44f64dd9e396540a51bb9734ce49670a198e6070c53d83d3bab194bd2c",
+    "publication_sha256": "f3b801e7709dace0ce73c18d8a38f8c1ea7015ba3ec0d11630c91e4927c77846",
+    "source_code_lines": 235,
+    "checkpoint_or_purpose": "google/gemma-2-2b",
+    "duplicate_code_sources": [
+      "dissertation_code.zip!/dissertation_code/Gemma_2_2b/gemma2-2b-fewshot.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory classification and prompting variants. The report describes NaN failures; no verified comparable performance claim is made."
+  },
+  {
+    "notebook": "notebooks/historical/preprocessing/preprocessing_ecthr_a_0c20500b.ipynb",
+    "source_relative_path": "dissertation_code/preprocessing ecthr_a.ipynb",
+    "source_file_sha256": "0ba1c76780258ad1adaa4da953801a582269540f2a869186021871dbeb1ba941",
+    "source_code_sha256": "0c20500bcf6724a4ee242048511932f23857b66b5b9d85e9a740e99b038f38af",
+    "publication_sha256": "a9b60786865a04d9af018f72178c2ef05a2c7820bf16e7b0aca806a40554097b",
+    "source_code_lines": 140,
+    "checkpoint_or_purpose": "Analysis / preprocessing",
+    "duplicate_code_sources": [
+      "dissertation_code.zip!/dissertation_code/preprocessing ecthr_a.ipynb"
+    ],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Article descriptions map IDs to Articles 1–10 incorrectly. Historic preprocessing is retained for provenance; use the new preparation pipeline for corrected labels."
+  },
+  {
+    "notebook": "notebooks/historical/phi1/phi1_lr_1e_6_epochs_3_maxlength_1024_loramodel_r_16_loraalpha_16_a6abd5f9.ipynb",
+    "source_relative_path": "phi1/Phi1_lr_1e-6_epochs_3_maxlength_1024_loramodel_r_16_loraalpha_16.ipynb",
+    "source_file_sha256": "e363f58ca68dc6c7f87587b96d58919eb4842bb686224ca172a086270981caf9",
+    "source_code_sha256": "a6abd5f9dc1c81c52706cbe511a24f6e0cccd299420052aae732680a08478601",
+    "publication_sha256": "42e15d7f401550bca25ce314131ebc3361cea01a881d19e2e4c2b98f45697c7e",
+    "source_code_lines": 258,
+    "checkpoint_or_purpose": "microsoft/phi-1",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory work; source records include incomplete results and training budgets that require reconciliation."
+  },
+  {
+    "notebook": "notebooks/historical/phi1/phi1_lr_1e_6_steps_1000_maxlength_1024_loramodel_r_16_loraalpha_16_ca7a16bb.ipynb",
+    "source_relative_path": "phi1/Phi1_lr_1e-6_steps_1000_maxlength_1024_loramodel_r_16_loraalpha_16.ipynb",
+    "source_file_sha256": "36c0118a36dc7e780059cdf360363fc3c6c5643daa3bc853ee2a56dbf52ee083",
+    "source_code_sha256": "ca7a16bb5c95575c6b155d4cbf30284540964d73503f2da3f09ca90a90a41aa6",
+    "publication_sha256": "a9fa08a9e17c2ffdefc9cbb995946f8877e0728d5550eb3622bc24bddb6aecc6",
+    "source_code_lines": 256,
+    "checkpoint_or_purpose": "microsoft/phi-1",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory work; source records include incomplete results and training budgets that require reconciliation."
+  },
+  {
+    "notebook": "notebooks/historical/phi1/phi1_lr_2e_5_steps_1400_maxlength_1024_loramodel_r_16_loraalpha_16_0c34f8ca.ipynb",
+    "source_relative_path": "phi1/Phi1_lr_2e-5_steps_1400_maxlength_1024_loramodel_r_16_loraalpha_16.ipynb",
+    "source_file_sha256": "c2efdb554c9b7941f78871b5bf09673f2a621cfb11d1a8fbdd26d5a8ec14b2c0",
+    "source_code_sha256": "0c34f8ca6c987a86eb4253377721c39942ddebfee603025d5c31766bd8fc29ac",
+    "publication_sha256": "66f563ba6aae4ad0b1243bdf8e068e060e67d90658554ea414cb5156926e837e",
+    "source_code_lines": 256,
+    "checkpoint_or_purpose": "microsoft/phi-1",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory work; source records include incomplete results and training budgets that require reconciliation."
+  },
+  {
+    "notebook": "notebooks/historical/phi1/phi1_lr_3e_5_steps_1000_maxlength_1024_loramodel_r_16_loraalpha_16_082ab971.ipynb",
+    "source_relative_path": "phi1/Phi1_lr_3e-5_steps_1000_maxlength_1024_loramodel_r_16_loraalpha_16.ipynb",
+    "source_file_sha256": "c3f1353f2bb989fc501797a569003d0bd5ddbbbb4f8757c1e59dfd9bcb1b042f",
+    "source_code_sha256": "082ab9718cd633a2507d50c2a4316cd21e7e6615a43d7fb6ffbded32ca382326",
+    "publication_sha256": "9cd89e91aa881d5789f94cce755e74a4e66f7020a50c802fd3f33ba25d333aa9",
+    "source_code_lines": 257,
+    "checkpoint_or_purpose": "microsoft/phi-1",
+    "duplicate_code_sources": [],
+    "transformations": [
+      "remove outputs, attachments, execution counts and runtime metadata",
+      "replace credential literals with HF_TOKEN environment lookup and redact remaining mentions",
+      "relocate personal absolute paths to data/historical",
+      "prepend historical status and limitations; preserve other source behavior"
+    ],
+    "limitations": "Historical code, not independently reproduced. Saved settings can differ from report labels; notebook filenames are not authoritative configurations. Exploratory work; source records include incomplete results and training budgets that require reconciliation."
+  }
+]
