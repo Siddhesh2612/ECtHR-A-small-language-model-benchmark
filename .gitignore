@@ -22,3 +22,6 @@ runs/
 # Private audit notes retained locally; publication docs live under docs/.
 PROJECT_REVIEW.md
 GITHUB_REPOSITORY_PLAN.md
+AGENTS.md
+.codex/
+.claude/

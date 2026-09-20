@@ -1,8 +1,9 @@
 # Contributing
 
 This project combines an MSc dissertation archive with a new experiment pipeline.
-Read [AGENTS.md](AGENTS.md), [methodology](docs/methodology.md) and the
-[historical catalogue](docs/experiment_catalogue.md) before changing research code.
+Read the [methodology](docs/methodology.md), [verification record](docs/verification.md)
+and [historical catalogue](docs/experiment_catalogue.md) before changing research
+code.
 
 ## Development workflow
 
