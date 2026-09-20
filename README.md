@@ -126,13 +126,12 @@ completion status. The runner terminates the training process when the supplied
 30–1,800 second budget expires. Pilot test evaluation is deliberately disabled;
 promoting a configuration to a full experiment is a separate research decision.
 
-## Future full pretrained experiment
+## Full pretrained experiment
 
-`configs/gpt_neo_125m.json` is a new full-fine-tuning configuration. The original
-GPT-Neo 125M training notebook was not recovered, so this configuration is not
-claimed as its reproduction. It uses prepared ECtHR-A data and downloads pretrained
-weights when first run. Review context length, batch size and compute resources
-before launching:
+`configs/gpt_neo_125m.json` is the full-fine-tuning configuration used for the
+completed new baseline. The original GPT-Neo 125M training notebook was not
+recovered, so this experiment is not claimed as its reproduction. It uses prepared
+ECtHR-A data and downloads the pinned pretrained weights when first run:
 
 ```sh
 python -m ecthr_benchmark.train --config configs/gpt_neo_125m.json
@@ -141,13 +140,45 @@ python -m ecthr_benchmark.evaluate --run-dir runs/gpt_neo_125m/PRINTED_RUN_ID
 
 Training reads only train and validation examples. The preparation manifest
 registers the expected test hash. Final evaluation checks the data identity and
-reloads the saved model. A model revision of `main` is resolved at download time;
-the resolved commit is recorded. Pin that commit in follow-up configurations for
-an exact model version.
+reloads the saved model. The model revision is pinned to the same immutable commit
+used by the LoRA and QLoRA comparisons.
 
-An optional LoRA code path exists but has not been verified in the initial
-full-fine-tuning smoke test. Quantization and multi-model automation are later
-extensions, not completed features.
+## GPT-Neo 125M baseline and adapter experiments
+
+The first new full ECtHR-A experiment completed on a Tesla T4 using the pinned
+GPT-Neo 125M revision, 512-token inputs and three epochs. Its publication-safe
+metrics and runtime record are stored in
+`results/new/gpt_neo_125m_full_finetuning.json`; model weights, predictions and
+case text remain private. This new result uses the current ten-output protocol
+and must remain separate from the historical reported scores.
+
+Two configurations extend that baseline from the same original pretrained
+checkpoint:
+
+```sh
+python -m pip install -e '.[train,lora]'
+python -m ecthr_benchmark.train --config configs/gpt_neo_125m_lora_staging.json
+python -m ecthr_benchmark.train --config configs/gpt_neo_125m_lora.json
+
+python -m pip install -e '.[train,qlora]'
+python -m ecthr_benchmark.train --config configs/gpt_neo_125m_qlora_staging.json
+python -m ecthr_benchmark.train --config configs/gpt_neo_125m_qlora.json
+```
+
+LoRA and QLoRA use the same rank, scaling, dropout, targeted linear layers,
+classifier module, splits, context length, seed and effective batch size. QLoRA
+changes only the frozen base representation to bitsandbytes NF4 with nested
+quantization. The QLoRA path requires a supported NVIDIA CUDA environment; do
+not use `device_map="auto"` for training. Run final test evaluation separately
+with `ecthr_benchmark.evaluate` after checkpoint selection on validation.
+
+On Kaggle, retain its CUDA-enabled PyTorch build and install the remaining pinned
+environment separately:
+
+```sh
+python -m pip install -r requirements/kaggle-qlora.txt
+python -m pip install -e . --no-deps
+```
 
 ## Repository map
 

@@ -12,6 +12,8 @@ import uuid
 from .labels import LABEL_NAMES as ARTICLE_NAMES, multi_hot
 from .metrics import trainer_metrics
 from .pilot import immutable_revision, validate_pilot
+from .adaptation import (make_quantization_config, validate_adaptation,
+                         validate_module_names)
 
 
 def write_json(path, value):
@@ -86,6 +88,7 @@ def train(config_path):
         raise SystemExit('Training dependencies missing. Install this project with its train extra.') from exc
     config_path = Path(config_path).resolve()
     config = json.loads(config_path.read_text())
+    validate_adaptation(config)
     mode = config.get('mode', 'pretrained')
     if mode not in ('smoke', 'pretrained'):
         raise ValueError('mode must be smoke or pretrained')
@@ -133,9 +136,15 @@ def train(config_path):
                 if not immutable_revision(revision):
                     raise ValueError('Could not resolve an immutable model revision.')
             tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision, trust_remote_code=False)
+            quantization_config = make_quantization_config(config)
+            model_kwargs = {}
+            if quantization_config is not None:
+                model_kwargs['quantization_config'] = quantization_config
+                model_kwargs['dtype'] = getattr(torch, config['quantization'].get('compute_dtype', 'float16'))
             model = AutoModelForSequenceClassification.from_pretrained(
                 model_id, revision=revision, num_labels=10,
-                problem_type='multi_label_classification', trust_remote_code=False)
+                problem_type='multi_label_classification', trust_remote_code=False,
+                **model_kwargs)
             if tokenizer.pad_token_id is None:
                 if tokenizer.eos_token_id is not None:
                     tokenizer.pad_token = tokenizer.eos_token
@@ -153,16 +162,19 @@ def train(config_path):
         if lora:
             if mode == 'smoke':
                 raise ValueError('Smoke mode verifies full fine-tuning only.')
-            targets = lora.get('target_modules')
-            if not isinstance(targets, list) or not targets or not all(isinstance(t, str) and t for t in targets):
-                raise ValueError('LoRA requires explicit nonempty target_modules.')
-            names = [name for name, _ in model.named_modules()]
-            if any(not any(name == t or name.endswith('.' + t) for name in names) for t in targets):
-                raise ValueError('At least one LoRA target module does not exist in the selected model.')
-            from peft import LoraConfig, TaskType, get_peft_model
+            validate_module_names(model, lora)
+            from peft import (LoraConfig, TaskType, get_peft_model,
+                              prepare_model_for_kbit_training)
+            if config.get('quantization'):
+                model = prepare_model_for_kbit_training(
+                    model,
+                    use_gradient_checkpointing=bool(config.get('gradient_checkpointing', False)))
             model = get_peft_model(model, LoraConfig(task_type=TaskType.SEQ_CLS,
                 r=int(lora.get('r', 8)), lora_alpha=int(lora.get('alpha', 16)),
-                lora_dropout=float(lora.get('dropout', 0.05)), target_modules=targets))
+                lora_dropout=float(lora.get('dropout', 0.05)),
+                target_modules=lora['target_modules'],
+                modules_to_save=lora.get('modules_to_save'),
+                bias=lora.get('bias', 'none'), use_rslora=bool(lora.get('use_rslora', False))))
         train_rows = read_rows(data_dir / 'train.jsonl')
         validation_rows = read_rows(data_dir / 'validation.jsonl')
         if {row['text'] for row in train_rows} & {row['text'] for row in validation_rows}:
@@ -194,6 +206,7 @@ def train(config_path):
             report_to='none', use_cpu=mode == 'smoke' or config.get('use_cpu', False),
             bf16=config.get('bf16', False), fp16=config.get('fp16', False),
             dataloader_pin_memory=False, optim='adamw_torch', logging_steps=int(config.get('logging_steps', 1 if mode == 'smoke' else 50)),
+            gradient_checkpointing=bool(config.get('gradient_checkpointing', False)),
             label_names=['labels'])
         trainer = Trainer(model=model, args=args, train_dataset=train_data, eval_dataset=val_data,
                           data_collator=default_data_collator, compute_metrics=trainer_metrics,
@@ -214,7 +227,11 @@ def train(config_path):
             'device': str(args.device), 'hardware': platform.platform(),
             'cuda_device': torch.cuda.get_device_name() if args.device.type == 'cuda' else None,
             'peak_cuda_memory_allocated_bytes': torch.cuda.max_memory_allocated() if args.device.type == 'cuda' else None,
-            'versions': {p: importlib.metadata.version(p) for p in ('torch', 'transformers', 'tokenizers', 'accelerate')},
+            'model_memory_footprint_bytes': model.get_memory_footprint() if hasattr(model, 'get_memory_footprint') else None,
+            'versions': {p: importlib.metadata.version(p) for p in
+                         (('torch', 'transformers', 'tokenizers', 'accelerate')
+                          + (('peft',) if lora else ())
+                          + (('bitsandbytes',) if config.get('quantization') else ()))},
             'best_checkpoint': trainer.state.best_model_checkpoint,
             'synthetic': mode == 'smoke', 'pilot': bool(config.get('pilot')), 'test_evaluated': False})
         write_json(run_dir / 'status.json', {'status': 'completed', 'mode': mode})

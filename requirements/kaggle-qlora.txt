@@ -1,0 +1,7 @@
+# Keep Kaggle's CUDA-enabled torch installation; install this file separately.
+transformers==4.56.2
+tokenizers==0.22.2
+accelerate==1.10.1
+peft==0.17.1
+bitsandbytes==0.50.2
+numpy==2.2.6

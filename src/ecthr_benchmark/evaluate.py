@@ -8,6 +8,7 @@ import time
 
 from .metrics import trainer_metrics
 from .train import encode_rows, file_hash, read_rows, write_json
+from .adaptation import make_quantization_config, validate_adaptation
 
 
 def publish_evaluation(run_dir, result, prediction_rows):
@@ -38,6 +39,7 @@ def publish_evaluation(run_dir, result, prediction_rows):
 def evaluate(run_dir):
     run_dir = Path(run_dir).resolve()
     config = json.loads((run_dir / 'resolved_config.json').read_text())
+    validate_adaptation(config)
     if config.get('pilot'):
         raise ValueError('Final test evaluation is disabled for pilot runs; create a separate full experiment.')
     import torch
@@ -53,9 +55,15 @@ def evaluate(run_dir):
     tokenizer = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
     if config.get('lora'):
         from peft import PeftModel
+        quantization_config = make_quantization_config(config)
+        model_kwargs = {}
+        if quantization_config is not None:
+            model_kwargs['quantization_config'] = quantization_config
+            model_kwargs['dtype'] = getattr(torch, config['quantization'].get('compute_dtype', 'float16'))
         model = AutoModelForSequenceClassification.from_pretrained(
             config['model_name'], revision=config.get('resolved_model_revision') or config.get('model_revision', 'main'),
-            num_labels=10, problem_type='multi_label_classification', trust_remote_code=False)
+            num_labels=10, problem_type='multi_label_classification', trust_remote_code=False,
+            **model_kwargs)
         if model.get_input_embeddings().num_embeddings != len(tokenizer):
             model.resize_token_embeddings(len(tokenizer))
         model.config.pad_token_id = tokenizer.pad_token_id
@@ -90,6 +98,7 @@ def evaluate(run_dir):
     result = {'metrics': predictions.metrics, 'test_sha256': file_hash(test_path),
               'test_rows': len(test_rows), 'synthetic': config['mode'] == 'smoke',
               'wall_seconds': elapsed, 'device': str(args.device),
+              'model_memory_footprint_bytes': model.get_memory_footprint() if hasattr(model, 'get_memory_footprint') else None,
               'note': 'End-to-end Trainer timing includes batching and metric computation; not isolated model latency.'}
     # Case indices and numeric decisions avoid redistributing case text.
     logits = predictions.predictions

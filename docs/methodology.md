@@ -52,6 +52,20 @@ test scores to select hyperparameters or checkpoints. Historical scores using
 different protocols remain in `results/historical` and must not be pooled with
 new results.
 
+## Parameter-efficient comparison protocol
+
+LoRA and QLoRA start from the same immutable pretrained revision as the full
+fine-tuning baseline, not from the already fine-tuned baseline weights. Both use
+the same rank, scaling, dropout, targeted linear modules and separately saved
+classification head. QLoRA loads the frozen base in four-bit NF4 with nested
+quantization and trains only adapter and classification-head parameters.
+
+Keep the dataset, maximum length, seed, epochs, effective batch size, validation
+checkpoint rule and final evaluation procedure fixed. Record total and trainable
+parameters, model memory footprint, peak CUDA allocation, wall time and exact
+dependency versions. These controls make the LoRA-versus-QLoRA comparison about
+base-weight quantization rather than a simultaneous adapter-design change.
+
 ## Limits of current verification
 
 An offline synthetic smoke run verifies execution and model reload, not predictive

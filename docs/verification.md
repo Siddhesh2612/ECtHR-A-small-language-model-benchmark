@@ -68,9 +68,11 @@ Verified without downloading pretrained weights or starting a pretrained run:
 - test examples are neither read nor copied into pilot data; final test evaluation rejects pilot runs;
 - the plan-only command completes without data preparation, network access or training.
 
-The pretrained checkpoint has not yet been downloaded or fine-tuned. These checks
-verify orchestration and safety boundaries, not model compatibility, predictive
-performance, runtime or memory usage.
+The bounded pilot, a 200-step staging run and a full three-epoch GPT-Neo 125M
+experiment have since completed on Kaggle. The full run used a Tesla T4 and the
+exact pinned revision recorded above. Publication-safe aggregate evidence is in
+`results/new/gpt_neo_125m_full_finetuning.json`; the private artifact hash links
+that record to the retained model bundle.
 
 ## Automated checks
 
@@ -80,7 +82,7 @@ Command:
 python -m unittest discover -s tests -v
 ```
 
-Current verification result: **29 tests passed**. Coverage includes data structure and split checks, official labels, multi-hot encoding, derived no-violation metrics, invalid metric inputs, recoverable evaluation writes, pilot workload ceilings and deterministic subset provenance.
+Current verification result: **33 tests passed**. Coverage includes data structure and split checks, official labels, multi-hot encoding, derived no-violation metrics, invalid metric inputs, recoverable evaluation writes, pilot workload ceilings, deterministic subset provenance and LoRA/QLoRA configuration validation.
 
 Command:
 
@@ -102,14 +104,16 @@ Result: passed for the complete current Git candidate set, including 21 notebook
 
 ## Not yet verified
 
-- No pretrained model has been downloaded or fine-tuned with the new pipeline; the bounded pilot remains execution-unverified.
-- `configs/gpt_neo_125m.json` is a proposed new experiment, not a recovered historical configuration.
-- The optional LoRA path has code-level validation but no completed training run.
-- CUDA behavior, GPU memory measurement and multi-GPU execution are untested.
-- Quantization is outside Phase 3 and is not implemented.
+- The completed GPT-Neo 125M baseline is a new experiment, not a recovered historical configuration.
+- LoRA has configuration and adapter-loading validation but no completed ECtHR-A training run.
+- QLoRA has configuration and code-level validation but no completed CUDA training/reload run.
+- Multi-GPU execution remains untested; the completed baseline used one Tesla T4.
+- Post-training INT8 and INT4 inference quantization are not yet implemented.
 - No controlled comparison with Legal-BERT or other models has been run.
 
-Before a full run, execute and inspect the bounded pilot, record observed hardware/runtime/memory evidence, and define a separate full-experiment compute budget. Do not promote pilot validation metrics into the final benchmark table.
+Run short LoRA and QLoRA staging checks before their full experiments, then record
+the same hardware, runtime, memory and evaluation evidence as the completed
+baseline. Do not promote pilot or staging metrics into the final benchmark table.
 
 ## Publication status
 

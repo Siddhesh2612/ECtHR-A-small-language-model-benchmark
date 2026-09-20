@@ -1,0 +1,56 @@
+{
+  "status": "completed",
+  "run_id": "20260918T115252Z-0f4c8c3a",
+  "method": "full_finetuning",
+  "model_name": "EleutherAI/gpt-neo-125m",
+  "model_revision": "21def0189f5705e2521767faed922f1f15e7d7db",
+  "seed": 42,
+  "max_length": 512,
+  "epochs": 3,
+  "hardware": "Tesla T4",
+  "training_wall_seconds": 2239.9869902189994,
+  "peak_cuda_memory_allocated_bytes": 3523953152,
+  "total_parameters": 125206272,
+  "trainable_parameters": 125206272,
+  "validation": {
+    "micro_f1": 0.5683942225998301,
+    "macro_f1": 0.45783174855891845,
+    "loss": 0.18304015696048737,
+    "f1_by_label": {
+      "2": 0.6476190476190476,
+      "3": 0.672,
+      "5": 0.6447761194029851,
+      "6": 0.6397188049209139,
+      "8": 0.4027777777777778,
+      "9": 0.0,
+      "10": 0.5294117647058824,
+      "11": 0.4782608695652174,
+      "14": 0.0,
+      "P1-1": 0.6612244897959184,
+      "no_violation": 0.36036036036036034
+    }
+  },
+  "test": {
+    "micro_f1": 0.536108751062022,
+    "macro_f1": 0.41624974576536183,
+    "loss": 0.1991414874792099,
+    "wall_seconds": 29.58117959900028,
+    "samples_per_second": 33.814,
+    "f1_by_label": {
+      "2": 0.6451612903225806,
+      "3": 0.6631299734748011,
+      "5": 0.6153846153846154,
+      "6": 0.645045045045045,
+      "8": 0.43010752688172044,
+      "9": 0.0,
+      "10": 0.3684210526315789,
+      "11": 0.22727272727272727,
+      "14": 0.0,
+      "P1-1": 0.7048458149779736,
+      "no_violation": 0.2793791574279379
+    }
+  },
+  "source_artifact": "private gpt_neo_125m_full_baseline.zip",
+  "artifact_sha256": "85e167f466fd0e13c127d3d479e4f9213bbe3c042bd7fa472025c7a98d94bb53",
+  "note": "Metrics and runtime metadata only. Model weights, predictions and ECtHR-A case text are not published."
+}
